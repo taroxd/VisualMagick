@@ -716,6 +716,7 @@ void ProjectFile::writeVS2010(wofstream &file,const vector<Project*> &allProject
   file << "    <ProjectName>" << _prefix << "_" << _name << "</ProjectName>" << endl;
   file << "    <ProjectGuid>{" << _guid << "}</ProjectGuid>" << endl;
   file << "    <Keyword>" << _wizard->platform() << "Proj</Keyword>" << endl;
+  file << "    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>" << endl;
   file << "  </PropertyGroup>" << endl;
   file << "  <Import Project=\"$(VCTargetsPath)\\Microsoft.Cpp.Default.props\" />" << endl;
 
@@ -804,14 +805,14 @@ void ProjectFile::writeVS2010ItemDefinitionGroup(wofstream &file,const bool debu
   file << "      <ProgramDatabaseFile>" << _wizard->binDirectory() << (_project->isExe() ? _name : name) << ".pdb</ProgramDatabaseFile>" << endl;
   file << "      <BasicRuntimeChecks>" << (debug ? "EnableFastChecks" : "Default") <<"</BasicRuntimeChecks>" << endl;
   file << "      <OmitFramePointers>" << (debug ? "false" : "true") <<"</OmitFramePointers>" << endl;
-  file << "      <Optimization>" << (debug ? "Disabled" : "Full") <<"</Optimization>" << endl;
+  file << "      <Optimization>" << (debug ? "Disabled" : "MaxSpeed") <<"</Optimization>" << endl;
   file << "      <AdditionalIncludeDirectories>";
   writeAdditionalIncludeDirectories(file,L";");
   file << ";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>" << endl;
   file << "      <PreprocessorDefinitions>";
   writePreprocessorDefinitions(file,debug);
   file << ";%(PreprocessorDefinitions)</PreprocessorDefinitions>" << endl;
-  file << "      <MultiProcessorCompilation>true</MultiProcessorCompilation>" << endl;
+  file << "      <MultiProcessorCompilation>false</MultiProcessorCompilation>" << endl;
   if (_wizard->visualStudioVersion() >= VS2015)
     file << "      <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>" << endl;
   file << "    </ClCompile>" << endl;
