@@ -27,16 +27,16 @@ TargetPage::TargetPage() : CPropertyPage(IDD_TARGET_PAGE)
 {
   setVisualStudioVersion();
 
-  _build64bit=FALSE;
+  _build64bit=TRUE;
   _excludeDeprecated=TRUE;
-  _includeIncompatibleLicense=FALSE;
+  _includeIncompatibleLicense=TRUE;
   _installedSupport=FALSE;
   _quantumDepth=Q16;
-  _solutionType=DYNAMIC_MT;
+  _solutionType=STATIC_MT;
   _useHDRI=PathFileExists(L"..\\MagickCore") ? TRUE : FALSE;
   _useOpenCL=TRUE;
-  _useOpenMP=TRUE;
-  _zeroConfigurationSupport=FALSE;
+  _useOpenMP=FALSE;
+  _zeroConfigurationSupport=TRUE;
 }
 
 TargetPage::~TargetPage()
